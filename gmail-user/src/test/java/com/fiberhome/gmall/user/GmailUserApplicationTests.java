@@ -1,9 +1,9 @@
-package com.example.demo;
+package com.fiberhome.gmall.user;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoApplicationTests {
+class GmailUserApplicationTests {
 
 
 
