@@ -1,8 +1,8 @@
 package com.fiberhome.gmall.user.service.impl;
 
-import com.fiberhome.gmall.user.bean.UmsMember;
+import com.fiberhome.gmall.bean.UmsMember;
+import com.fiberhome.gmall.service.UserService;
 import com.fiberhome.gmall.user.mapper.UserMapper;
-import com.fiberhome.gmall.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

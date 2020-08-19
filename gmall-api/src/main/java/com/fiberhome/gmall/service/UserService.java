@@ -1,7 +1,7 @@
-package com.fiberhome.gmall.user.service;
+package com.fiberhome.gmall.service;
 
 
-import com.fiberhome.gmall.user.bean.UmsMember;
+import com.fiberhome.gmall.bean.UmsMember;
 
 import java.util.List;
 

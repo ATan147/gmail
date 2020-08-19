@@ -1,13 +1,14 @@
 package com.fiberhome.gmall.user.controller;
 
 
-import com.fiberhome.gmall.user.bean.UmsMember;
-import com.fiberhome.gmall.user.service.UserService;
+import com.fiberhome.gmall.bean.UmsMember;
+import com.fiberhome.gmall.bean.UmsMemberReceiveAddress;
+import com.fiberhome.gmall.service.UmsMemberReceiveAddressService;
+import com.fiberhome.gmall.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.util.List;
 
 /**
@@ -20,6 +21,9 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    UmsMemberReceiveAddressService umsMemberReceiveAddressService;
+
     @RequestMapping("index")
     @ResponseBody
     public String index() {
@@ -31,5 +35,12 @@ public class UserController {
     public List<UmsMember> getAllUser() {
         List<UmsMember> umsMembers = userService.getAllUser();
         return umsMembers;
+    }
+
+    @RequestMapping("getAllUmsMemberReceiveAddress")
+    @ResponseBody
+    public List<UmsMemberReceiveAddress> getAllUmsMenberReceiveAddress(){
+        List<UmsMemberReceiveAddress> allUmsMemberReceiveAddress = umsMemberReceiveAddressService.getAllUmsMemberReceiveAddress();
+        return allUmsMemberReceiveAddress;
     }
 }
