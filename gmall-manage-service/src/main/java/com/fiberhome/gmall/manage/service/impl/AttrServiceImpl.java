@@ -6,6 +6,7 @@ import com.fiberhome.gmall.bean.PmsBaseAttrValue;
 import com.fiberhome.gmall.manage.mapper.PmsBaseAttrInfoMapper;
 import com.fiberhome.gmall.manage.mapper.PmsBaseAttrValueMapper;
 import com.fiberhome.gmall.service.AttrService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -34,34 +35,38 @@ public class AttrServiceImpl implements AttrService {
 
     @Override
     public String saveAttrInfo(PmsBaseAttrInfo pmsBaseAttrInfo) {
-        if (pmsBaseAttrInfo.getId() != null) {
+        if (!StringUtils.isBlank(pmsBaseAttrInfo.getId())) {
             return updateAttrInfo(pmsBaseAttrInfo);
         }
-        if (pmsBaseAttrInfo.getAttrName() == null || pmsBaseAttrInfo.getAttrName().equals("")) {
+        if (StringUtils.isBlank(pmsBaseAttrInfo.getAttrName())) {
             return "属性值为空，无法添加";
         }
-        int i = pmsBaseAttrInfoMapper.insert(pmsBaseAttrInfo);
-        PmsBaseAttrInfo pmsBaseAttrInfo1 = pmsBaseAttrInfoMapper.selectOne(pmsBaseAttrInfo);
-        if (i > 0) {
-            return saveAttrValue(pmsBaseAttrInfo.getAttrValueList(),pmsBaseAttrInfo1.getId());
+        pmsBaseAttrInfoMapper.insertSelective(pmsBaseAttrInfo);
+        List<PmsBaseAttrValue> attrValueList = pmsBaseAttrInfo.getAttrValueList();
+        for (PmsBaseAttrValue pmsBaseAttrValue : attrValueList) {
+            pmsBaseAttrValue.setAttrId(pmsBaseAttrInfo.getId());
+            pmsBaseAttrValueMapper.insertSelective(pmsBaseAttrValue);
         }
         return "success";
     }
 
     private String updateAttrInfo(PmsBaseAttrInfo pmsBaseAttrInfo) {
+        if (StringUtils.isBlank(pmsBaseAttrInfo.getAttrName())) {
+            return "属性值为空，无法添加";
+        }
         pmsBaseAttrInfoMapper.updateByPrimaryKey(pmsBaseAttrInfo);
         PmsBaseAttrValue pmsBaseAttrValue = new PmsBaseAttrValue();
         pmsBaseAttrValue.setAttrId(pmsBaseAttrInfo.getId());
         pmsBaseAttrValueMapper.delete(pmsBaseAttrValue);
-        return saveAttrValue(pmsBaseAttrInfo.getAttrValueList(),pmsBaseAttrInfo.getId());
+        return saveAttrValue(pmsBaseAttrInfo.getAttrValueList(), pmsBaseAttrInfo.getId());
     }
 
-    private String saveAttrValue(List<PmsBaseAttrValue> attrValueList,String attrId) {
+    private String saveAttrValue(List<PmsBaseAttrValue> attrValueList, String attrId) {
         if (attrValueList != null) {
             for (int j = 0; j < attrValueList.size(); j++) {
                 PmsBaseAttrValue pmsBaseAttrValue = attrValueList.get(j);
                 pmsBaseAttrValue.setAttrId(attrId);
-                pmsBaseAttrValueMapper.insert(pmsBaseAttrValue);
+                pmsBaseAttrValueMapper.insertSelective(pmsBaseAttrValue);
             }
         }
         return "success";
