@@ -5,8 +5,10 @@ import com.fiberhome.gmall.bean.PmsProductInfo;
 import com.fiberhome.gmall.service.SpuService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -28,4 +30,20 @@ public class SpuController {
         return pmsProductInfos;
     }
 
+    @RequestMapping("saveSpuInfo")
+    @ResponseBody
+    public String saveSpuList(@RequestBody PmsProductInfo pmsProductInfo){
+        System.out.println(pmsProductInfo);
+        return "success";
+    }
+
+    @RequestMapping("fileUpload")
+    @ResponseBody
+    public String fileUpload(MultipartFile multipartFile){
+        // 上传分布式文件存储系统
+
+
+        // 返回图片地址到前端
+        return "S";
+    }
 }

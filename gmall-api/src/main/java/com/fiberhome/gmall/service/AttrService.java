@@ -2,6 +2,7 @@ package com.fiberhome.gmall.service;
 
 import com.fiberhome.gmall.bean.PmsBaseAttrInfo;
 import com.fiberhome.gmall.bean.PmsBaseAttrValue;
+import com.fiberhome.gmall.bean.PmsBaseSaleAttr;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface AttrService {
     String saveAttrInfo(PmsBaseAttrInfo pmsBaseAttrInfo);
 
     List<PmsBaseAttrValue> getAttrValueList(String attrId);
+
+    List<PmsBaseSaleAttr> baseSaleAttrList();
 }

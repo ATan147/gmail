@@ -3,6 +3,7 @@ package com.fiberhome.gmall.manage.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.fiberhome.gmall.bean.PmsBaseAttrInfo;
 import com.fiberhome.gmall.bean.PmsBaseAttrValue;
+import com.fiberhome.gmall.bean.PmsBaseSaleAttr;
 import com.fiberhome.gmall.service.AttrService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -40,5 +41,11 @@ public class AttrController {
     public List<PmsBaseAttrValue> getAttrValueList(String attrId) {
         List<PmsBaseAttrValue> pmsBaseAttrValues = attrService.getAttrValueList(attrId);
         return pmsBaseAttrValues;
+    }
+
+    @RequestMapping("baseSaleAttrList")
+    @ResponseBody
+    public List<PmsBaseSaleAttr> baseSaleAttrList(){
+        return attrService.baseSaleAttrList();
     }
 }
