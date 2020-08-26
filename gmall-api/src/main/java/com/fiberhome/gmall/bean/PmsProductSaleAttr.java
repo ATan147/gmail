@@ -1,8 +1,6 @@
 package com.fiberhome.gmall.bean;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
@@ -10,6 +8,7 @@ public class PmsProductSaleAttr implements Serializable {
 
     @Id
     @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     String id ;
 
     @Column

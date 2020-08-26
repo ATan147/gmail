@@ -10,4 +10,6 @@ import java.util.List;
  */
 public interface SpuService {
     List<PmsProductInfo> spuList(String catalog3Id);
+
+    void saveSpuList(PmsProductInfo pmsProductInfo);
 }
