@@ -2,6 +2,7 @@ package com.fiberhome.gmall.manage.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.fiberhome.gmall.bean.PmsProductInfo;
+import com.fiberhome.gmall.bean.PmsProductSaleAttr;
 import com.fiberhome.gmall.manage.util.PmsUploadUtil;
 import com.fiberhome.gmall.service.SpuService;
 import org.springframework.stereotype.Controller;
@@ -44,5 +45,12 @@ public class SpuController {
         // 返回图片地址到前端
         System.out.println(url);
         return url;
+    }
+
+    @RequestMapping("spuSaleAttrList")
+    @ResponseBody
+    public List<PmsProductSaleAttr> spuSaleAttrList(String spuId){
+        List<PmsProductSaleAttr> pmsProductSaleAttrs = spuService.spuSaleAttrList(spuId);
+        return pmsProductSaleAttrs;
     }
 }
