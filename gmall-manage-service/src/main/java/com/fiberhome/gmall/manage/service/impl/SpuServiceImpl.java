@@ -55,7 +55,6 @@ public class SpuServiceImpl implements SpuService {
                 pmsProductSaleAttrValueMapper.insertSelective(pmsProductSaleAttrValue);
             }
         }
-
         List<PmsProductImage> spuImageList = pmsProductInfo.getSpuImageList();
         for (PmsProductImage pmsProductImage : spuImageList) {
             pmsProductImage.setProductId(pmsProductInfo.getId());
@@ -68,13 +67,11 @@ public class SpuServiceImpl implements SpuService {
         PmsProductSaleAttr pmsProductSaleAttr = new PmsProductSaleAttr();
         pmsProductSaleAttr.setProductId(spuId);
         List<PmsProductSaleAttr> pmsProductSaleAttrs = pmsProductSaleAttrMapper.select(pmsProductSaleAttr);
-        for (PmsProductSaleAttr productSaleAttr : pmsProductSaleAttrs) {
+        for (PmsProductSaleAttr spuSaleAttr : pmsProductSaleAttrs) {
             PmsProductSaleAttrValue pmsProductSaleAttrValue = new PmsProductSaleAttrValue();
             pmsProductSaleAttrValue.setProductId(spuId);
-            pmsProductSaleAttrValue.setSaleAttrId(productSaleAttr.getSaleAttrId());
-            List<PmsProductSaleAttrValue> pmsProductSaleAttrValues = pmsProductSaleAttrValueMapper.select(pmsProductSaleAttrValue);
-            System.out.println(pmsProductSaleAttrValues);
-            pmsProductSaleAttr.setSpuSaleAttrValueList(pmsProductSaleAttrValues);
+            pmsProductSaleAttrValue.setSaleAttrId(spuSaleAttr.getSaleAttrId());
+            spuSaleAttr.setSpuSaleAttrValueList(pmsProductSaleAttrValueMapper.select(pmsProductSaleAttrValue));
         }
         return pmsProductSaleAttrs;
     }
