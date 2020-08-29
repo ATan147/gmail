@@ -1,5 +1,6 @@
 package com.fiberhome.gmall.service;
 
+import com.fiberhome.gmall.bean.PmsProductImage;
 import com.fiberhome.gmall.bean.PmsProductInfo;
 import com.fiberhome.gmall.bean.PmsProductSaleAttr;
 
@@ -15,4 +16,6 @@ public interface SpuService {
     void saveSpuList(PmsProductInfo pmsProductInfo);
 
     List<PmsProductSaleAttr> spuSaleAttrList(String spuId);
+
+    List<PmsProductImage> spuImageList(String spuId);
 }

@@ -1,6 +1,7 @@
 package com.fiberhome.gmall.manage.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.fiberhome.gmall.bean.PmsProductImage;
 import com.fiberhome.gmall.bean.PmsProductInfo;
 import com.fiberhome.gmall.bean.PmsProductSaleAttr;
 import com.fiberhome.gmall.manage.util.PmsUploadUtil;
@@ -24,14 +25,14 @@ public class SpuController {
 
     @RequestMapping("spuList")
     @ResponseBody
-    public List<PmsProductInfo> spuList(String catalog3Id){
-        List<PmsProductInfo> pmsProductInfos =  spuService.spuList(catalog3Id);
+    public List<PmsProductInfo> spuList(String catalog3Id) {
+        List<PmsProductInfo> pmsProductInfos = spuService.spuList(catalog3Id);
         return pmsProductInfos;
     }
 
     @RequestMapping("saveSpuInfo")
     @ResponseBody
-    public String saveSpuList(@RequestBody PmsProductInfo pmsProductInfo){
+    public String saveSpuList(@RequestBody PmsProductInfo pmsProductInfo) {
         System.out.println(pmsProductInfo);
         spuService.saveSpuList(pmsProductInfo);
         return "success";
@@ -39,7 +40,7 @@ public class SpuController {
 
     @RequestMapping("fileUpload")
     @ResponseBody
-    public String fileUpload(@RequestParam("file") MultipartFile multipartFile){
+    public String fileUpload(@RequestParam("file") MultipartFile multipartFile) {
         // 上传分布式文件存储系统
         String url = PmsUploadUtil.uploadImage(multipartFile);
         // 返回图片地址到前端
@@ -49,8 +50,15 @@ public class SpuController {
 
     @RequestMapping("spuSaleAttrList")
     @ResponseBody
-    public List<PmsProductSaleAttr> spuSaleAttrList(String spuId){
+    public List<PmsProductSaleAttr> spuSaleAttrList(String spuId) {
         List<PmsProductSaleAttr> pmsProductSaleAttrs = spuService.spuSaleAttrList(spuId);
         return pmsProductSaleAttrs;
+    }
+
+
+    @RequestMapping("spuImageList")
+    @ResponseBody
+    public List<PmsProductImage> spuImageList(String spuId) {
+        return spuService.spuImageList(spuId);
     }
 }
