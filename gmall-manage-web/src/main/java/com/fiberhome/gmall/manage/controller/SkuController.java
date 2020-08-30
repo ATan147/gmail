@@ -1,8 +1,9 @@
 package com.fiberhome.gmall.manage.controller;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.fiberhome.gmall.bean.PmsSkuInfo;
 import com.fiberhome.gmall.service.SkuService;
-import jdk.nashorn.internal.ir.annotations.Reference;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +27,10 @@ public class SkuController {
     @ResponseBody
     public String saveSkuInfo(@RequestBody PmsSkuInfo pmsSkuInfo) {
         pmsSkuInfo.setProductId(pmsSkuInfo.getSpuId());
+        String skuDefaultImg = pmsSkuInfo.getSkuDefaultImg();
+        if (StringUtils.isBlank(skuDefaultImg)){
+            pmsSkuInfo.setSkuDefaultImg(pmsSkuInfo.getSkuImageList().get(0).getImgUrl());
+        }
         skuService.saveSkuInfo(pmsSkuInfo);
         return "success";
     }

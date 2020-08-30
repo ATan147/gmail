@@ -1,13 +1,18 @@
 package com.fiberhome.gmall.manage.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.fiberhome.gmall.bean.PmsSkuAttrValue;
+import com.fiberhome.gmall.bean.PmsSkuImage;
 import com.fiberhome.gmall.bean.PmsSkuInfo;
+import com.fiberhome.gmall.bean.PmsSkuSaleAttrValue;
 import com.fiberhome.gmall.manage.mapper.PmsSkuAttrValueMapper;
 import com.fiberhome.gmall.manage.mapper.PmsSkuImageMapper;
 import com.fiberhome.gmall.manage.mapper.PmsSkuInfoMapper;
 import com.fiberhome.gmall.manage.mapper.PmsSkuSaleAttrValueMapper;
 import com.fiberhome.gmall.service.SkuService;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 /**
  * @author ATan147
@@ -35,6 +40,25 @@ public class SkuServiceImpl implements SkuService {
     @Override
     public void saveSkuInfo(PmsSkuInfo pmsSkuInfo) {
         int i = pmsSkuInfoMapper.insertSelective(pmsSkuInfo);
+        String skuId = pmsSkuInfo.getId();
+
+        List<PmsSkuAttrValue> skuAttrValueList = pmsSkuInfo.getSkuAttrValueList();
+        for (PmsSkuAttrValue pmsSkuAttrValue : skuAttrValueList) {
+            pmsSkuAttrValue.setSkuId(skuId);
+            pmsSkuAttrValueMapper.insertSelective(pmsSkuAttrValue);
+        }
+
+        List<PmsSkuSaleAttrValue> skuSaleAttrValueList = pmsSkuInfo.getSkuSaleAttrValueList();
+        for (PmsSkuSaleAttrValue pmsSkuSaleAttrValue : skuSaleAttrValueList) {
+            pmsSkuSaleAttrValue.setSkuId(skuId);
+            pmsSkuSaleAttrValueMapper.insertSelective(pmsSkuSaleAttrValue);
+        }
+
+        List<PmsSkuImage> skuImageList = pmsSkuInfo.getSkuImageList();
+        for (PmsSkuImage pmsSkuImage : skuImageList) {
+            pmsSkuImage.setSkuId(skuId);
+            pmsSkuImageMapper.insertSelective(pmsSkuImage);
+        }
 
     }
 }
