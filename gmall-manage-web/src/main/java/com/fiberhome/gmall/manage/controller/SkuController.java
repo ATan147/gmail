@@ -28,7 +28,7 @@ public class SkuController {
     public String saveSkuInfo(@RequestBody PmsSkuInfo pmsSkuInfo) {
         pmsSkuInfo.setProductId(pmsSkuInfo.getSpuId());
         String skuDefaultImg = pmsSkuInfo.getSkuDefaultImg();
-        if (StringUtils.isBlank(skuDefaultImg)){
+        if (StringUtils.isBlank(skuDefaultImg)) {
             pmsSkuInfo.setSkuDefaultImg(pmsSkuInfo.getSkuImageList().get(0).getImgUrl());
         }
         skuService.saveSkuInfo(pmsSkuInfo);

@@ -9,7 +9,7 @@ public class PmsProductSaleAttr implements Serializable {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String id ;
+    String id;
 
     @Column
     String productId;

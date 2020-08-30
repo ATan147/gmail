@@ -45,7 +45,7 @@ public class AttrController {
 
     @RequestMapping("baseSaleAttrList")
     @ResponseBody
-    public List<PmsBaseSaleAttr> baseSaleAttrList(){
+    public List<PmsBaseSaleAttr> baseSaleAttrList() {
         return attrService.baseSaleAttrList();
     }
 }

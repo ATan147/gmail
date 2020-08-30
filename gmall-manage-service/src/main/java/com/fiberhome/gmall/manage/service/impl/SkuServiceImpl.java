@@ -35,8 +35,6 @@ public class SkuServiceImpl implements SkuService {
     PmsSkuImageMapper pmsSkuImageMapper;
 
 
-
-
     @Override
     public void saveSkuInfo(PmsSkuInfo pmsSkuInfo) {
         int i = pmsSkuInfoMapper.insertSelective(pmsSkuInfo);

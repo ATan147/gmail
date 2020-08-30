@@ -40,7 +40,7 @@ public class UserController {
 
     @RequestMapping("getAllUmsMemberReceiveAddress")
     @ResponseBody
-    public List<UmsMemberReceiveAddress> getAllUmsMenberReceiveAddress(){
+    public List<UmsMemberReceiveAddress> getAllUmsMenberReceiveAddress() {
         List<UmsMemberReceiveAddress> allUmsMemberReceiveAddress = umsMemberReceiveAddressService.getAllUmsMemberReceiveAddress();
         return allUmsMemberReceiveAddress;
     }
