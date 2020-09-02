@@ -22,5 +22,7 @@ public class GmallRedissonConfig {
         config.useSingleServer().setAddress("redis://"+host+":"+port);
         RedissonClient redisson = Redisson.create(config);
         return redisson;
+
+
     }
 }
