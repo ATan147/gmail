@@ -13,6 +13,7 @@ public class GmallRedissonConfig {
     @Value("${spring.redis.host:0}")
     private String host;
 
+
     @Value("${spring.redis.port:6379}")
     private String port;
 
